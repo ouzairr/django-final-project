@@ -1,5 +1,4 @@
 from django.contrib import admin
-
 from .models import Course, Lesson, Instructor, Question, Choice, Enrollment, Submission
 
 class ChoiceInline(admin.StackedInline):
@@ -10,18 +9,17 @@ class QuestionInline(admin.StackedInline):
     model = Question
     extra = 2
 
-
 class QuestionAdmin(admin.ModelAdmin):
     inlines = [ChoiceInline]
-
 
 class LessonAdmin(admin.ModelAdmin):
     list_display = ['title']
     inlines = [QuestionInline]
-
 
 admin.site.register(Course)
 admin.site.register(Lesson, LessonAdmin)
 admin.site.register(Instructor)
 admin.site.register(Question, QuestionAdmin)
 admin.site.register(Choice)
+admin.site.register(Enrollment)
+admin.site.register(Submission)
